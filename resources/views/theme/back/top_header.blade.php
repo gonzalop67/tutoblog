@@ -194,9 +194,9 @@
                                 <div class="dropdown-divider"></div>
                                 <form action="{{route('logout')}}" method="POST">
                                     @csrf
-                                    <button type="submit" class="dropdown-item" style="cursor: pointer">
+                                    <a href="#" class="dropdown-item" onclick="this.closest('form').submit()">
                                         <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout
-                                    </button>
+                                    </a>
                                 </form>
                                 <div class="dropdown-divider"></div>
                                 <div class="p-l-30 p-10"><a href="javascript:void(0)"
