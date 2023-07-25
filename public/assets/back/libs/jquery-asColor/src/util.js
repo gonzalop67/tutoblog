@@ -1,5 +1,5 @@
 export function expandHex(hex) {
-  if (hex.indexOf("#") === 0) {
+  if (hex.indexOf('#') === 0) {
     hex = hex.substr(1);
   }
   if (!hex) {
@@ -12,15 +12,10 @@ export function expandHex(hex) {
 }
 
 export function shrinkHex(hex) {
-  if (hex.indexOf("#") === 0) {
+  if (hex.indexOf('#') === 0) {
     hex = hex.substr(1);
   }
-  if (
-    hex.length === 6 &&
-    hex[0] === hex[1] &&
-    hex[2] === hex[3] &&
-    hex[4] === hex[5]
-  ) {
+  if (hex.length === 6 && hex[0] === hex[1] && hex[2] === hex[3] && hex[4] === hex[5]) {
     hex = hex[0] + hex[2] + hex[4];
   }
   return `#${hex}`;
@@ -31,7 +26,7 @@ export function parseIntFromHex(val) {
 }
 
 export function isPercentage(n) {
-  return typeof n === "string" && n.indexOf("%") === n.length - 1;
+  return typeof n === 'string' && n.indexOf('%') === n.length - 1;
 }
 
 export function conventPercentageToRgb(n) {

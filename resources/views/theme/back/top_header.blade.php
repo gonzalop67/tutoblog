@@ -42,7 +42,7 @@
             <!-- ============================================================== -->
             <!-- toggle and nav items -->
             <!-- ============================================================== -->
-            <ul class="navbar-nav float-left me-auto">
+            <ul class="navbar-nav float-left mr-auto">
                 <li class="nav-item d-none d-lg-block">
                     <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
                         data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a>
