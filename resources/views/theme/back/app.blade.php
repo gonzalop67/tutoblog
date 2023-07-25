@@ -94,6 +94,13 @@
     <script src="{{ asset('assets/back/js/waves.js') }}"></script>
     <!--Menu sidebar -->
     <script src="{{ asset('assets/back/js/sidebarmenu.js') }}"></script>
+    <!--Plugins -->
+    <script src="{{ asset('assets/back/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/back/libs/jquery-validation/locatization/messages_es.js') }}"></script> --}}
+    <!--Plugins de paginas especificas -->
+    @yield("scriptsPlugins")
+    <!--Scripts de paginas especificas -->
+    @yield("scripts")
     <!--Custom JavaScript -->
     <script src="{{ asset('assets/back/js/custom.min.js') }}"></script>
 </body>
