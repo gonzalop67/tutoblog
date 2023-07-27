@@ -17,6 +17,7 @@
     <!-- Custom CSS -->
     <!-- Custom CSS -->
     <link href="{{ asset('assets/back/css/style.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/back/css/tutoblog.css') }}" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -96,13 +97,14 @@
     <script src="{{ asset('assets/back/js/sidebarmenu.js') }}"></script>
     <!--Plugins -->
     <script src="{{ asset('assets/back/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
-    {{-- <script src="{{ asset('assets/back/libs/jquery-validation/locatization/messages_es.js') }}"></script> --}}
+    <script src="{{ asset('assets/back/libs/jquery-validation/dist/localization/messages_es.js') }}"></script>
     <!--Plugins de paginas especificas -->
     @yield("scriptsPlugins")
     <!--Scripts de paginas especificas -->
     @yield("scripts")
     <!--Custom JavaScript -->
     <script src="{{ asset('assets/back/js/custom.min.js') }}"></script>
+    <script src="{{ asset('assets/back/js/tutoblog.js') }}"></script>
 </body>
 
 </html>

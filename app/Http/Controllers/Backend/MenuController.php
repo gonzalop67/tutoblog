@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Menu;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Backend\ValidacionMenu;
 
 class MenuController extends Controller
 {
@@ -23,9 +25,9 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function crear()
     {
-        //
+        return view('theme.back.menu.crear');
     }
 
     /**
@@ -34,9 +36,11 @@ class MenuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function guardar(ValidacionMenu $request)
     {
-        //
+        $validado = $request->validated();
+        Menu::create($validado);
+        return redirect()->route('menu.crear')->with('mensaje', 'Menu guardado correctamente');
     }
 
     /**
