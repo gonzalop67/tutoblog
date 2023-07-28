@@ -2,3 +2,8 @@ label.requerido:after {
     content: " *";
     color: #e73d4a;
 }
+
+.btn-accion-tabla {
+    border: none;
+    cursor: pointer;
+}

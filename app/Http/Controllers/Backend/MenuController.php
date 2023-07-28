@@ -17,7 +17,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        return view('theme.back.menu.index');
+        $menus = Menu::getMenu();
+        return view('theme.back.menu.index', compact('menus'));
     }
 
     /**
@@ -44,25 +45,15 @@ class MenuController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editar($id)
     {
-        //
+        $data = Menu::findOrFail($id);
+        return view('theme.back.menu.editar', compact('data'));
     }
 
     /**
@@ -72,9 +63,10 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function actualizar(ValidacionMenu $request, $id)
     {
-        //
+        Menu::findOrFail($id)->update($request->validated());
+        return redirect()->route('menu')->with('mensaje', 'Menú actualizado con éxito');
     }
 
     /**
@@ -83,8 +75,9 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function eliminar($id)
     {
-        //
+        Menu::destroy($id);
+        return redirect()->route('menu')->with('mensaje', 'Menú eliminado con éxito');
     }
 }
