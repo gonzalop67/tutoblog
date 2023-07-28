@@ -31,7 +31,7 @@
                     <div class="dd" id="nestable">
                         <ol class="dd-list">
                             @foreach ($menus as $key => $item)
-                                @if ($item['menus_id'] != null)
+                                @if ($item['menu_id'] != null)
                                     break;
                                 @endif
                                 @include('theme.back.menu.menu-item', ['item' => $item])

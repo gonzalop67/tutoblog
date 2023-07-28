@@ -1,7 +1,7 @@
 <div class="form-group row">
     <label for="nombre" class="col-sm-3 text-right control-label col-form-label requerido">Nombre</label>
     <div class="col-sm-5">
-        <input type="text" name="nombre" id="nombre" class="form-control"  value="{{old('nombre', $data->nombre ?? '')}}" maxlength="50" required>
+        <input type="text" name="nombre" id="nombre" class="form-control"  value="{{old('nombre', $data->nombre ?? '')}}" maxlength="50" required autofocus>
     </div>
 </div>
 <div class="form-group row">

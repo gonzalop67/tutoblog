@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearTablaPostsTags extends Migration
+class CrearTablaPostCategoria extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CrearTablaPostsTags extends Migration
      */
     public function up()
     {
-        Schema::create('posts_tags', function (Blueprint $table) {
-            $table->unsignedBigInteger('posts_id');
-            $table->foreign('posts_id', 'fk_posttag_post')
+        Schema::create('post_categoria', function (Blueprint $table) {
+            $table->unsignedBigInteger('post_id');
+            $table->foreign('post_id', 'fk_postcategoria_post')
                 ->references('id')
-                ->on('posts')
+                ->on('post')
                 ->onDelete('cascade')
                 ->onUpdate('restrict');
-            $table->unsignedBigInteger('tags_id');
-            $table->foreign('tags_id', 'fk_posttag_tag')
+            $table->unsignedBigInteger('categoria_id');
+            $table->foreign('categoria_id', 'fk_postcategoria_categoria')
                 ->references('id')
-                ->on('tags')
+                ->on('categoria')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
         });
@@ -36,6 +36,6 @@ class CrearTablaPostsTags extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts_tags');
+        Schema::dropIfExists('post_categoria');
     }
 }

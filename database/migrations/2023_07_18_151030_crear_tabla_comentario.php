@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearTablaComentarios extends Migration
+class CrearTablaComentario extends Migration
 {
     /**
      * Run the migrations.
@@ -13,24 +13,24 @@ class CrearTablaComentarios extends Migration
      */
     public function up()
     {
-        Schema::create('comentarios', function (Blueprint $table) {
+        Schema::create('comentario', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('usuarios_id');
-            $table->foreign('usuarios_id', 'fk_comentario_usuario')
+            $table->unsignedBigInteger('usuario_id');
+            $table->foreign('usuario_id', 'fk_comentario_usuario')
                 ->references('id')
-                ->on('usuarios')
+                ->on('usuario')
                 ->onDelete('cascade')
                 ->onUpdate('restrict');
-            $table->unsignedBigInteger('posts_id');
-            $table->foreign('posts_id', 'fk_comentario_post')
+            $table->unsignedBigInteger('post_id');
+            $table->foreign('post_id', 'fk_comentario_post')
                 ->references('id')
-                ->on('posts')
+                ->on('post')
                 ->onDelete('cascade')
                 ->onUpdate('restrict');
-            $table->unsignedBigInteger('comentarios_id')->nullable();
-            $table->foreign('comentarios_id', 'fk_comentario_comentario')
+            $table->unsignedBigInteger('comentario_id')->nullable();
+            $table->foreign('comentario_id', 'fk_comentario_comentario')
                 ->references('id')
-                ->on('comentarios')
+                ->on('comentario')
                 ->onDelete('cascade')
                 ->onUpdate('restrict');
             $table->timestamps();
@@ -44,6 +44,6 @@ class CrearTablaComentarios extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comentarios');
+        Schema::dropIfExists('comentario');
     }
 }

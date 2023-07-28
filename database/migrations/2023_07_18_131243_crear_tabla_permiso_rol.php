@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearTablaPermisosRoles extends Migration
+class CrearTablaPermisoRol extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CrearTablaPermisosRoles extends Migration
      */
     public function up()
     {
-        Schema::create('permisos_roles', function (Blueprint $table) {
-            $table->unsignedBigInteger('permisos_id');
-            $table->foreign('permisos_id', 'fk_permisorol_permiso')
+        Schema::create('permiso_rol', function (Blueprint $table) {
+            $table->unsignedBigInteger('permiso_id');
+            $table->foreign('permiso_id', 'fk_permisorol_permiso')
                     ->references('id')
-                    ->on('permisos')
+                    ->on('permiso')
                     ->onDelete('cascade')
                     ->onUpdate('restrict');
-            $table->unsignedBigInteger('roles_id');
-            $table->foreign('roles_id', 'fk_permisorol_rol')
+            $table->unsignedBigInteger('rol_id');
+            $table->foreign('rol_id', 'fk_permisorol_rol')
                     ->references('id')
-                    ->on('roles')
+                    ->on('rol')
                     ->onDelete('cascade')
                     ->onUpdate('restrict');
         });
@@ -36,6 +36,6 @@ class CrearTablaPermisosRoles extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permisos_roles');
+        Schema::dropIfExists('permiso_rol');
     }
 }

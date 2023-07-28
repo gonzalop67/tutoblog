@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearTablaPostsCategorias extends Migration
+class CrearTablaMenuRol extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,18 @@ class CrearTablaPostsCategorias extends Migration
      */
     public function up()
     {
-        Schema::create('posts_categorias', function (Blueprint $table) {
-            $table->unsignedBigInteger('posts_id');
-            $table->foreign('posts_id', 'fk_postcategoria_post')
+        Schema::create('menu_rol', function (Blueprint $table) {
+            $table->unsignedBigInteger('menu_id');
+            $table->foreign('menu_id', 'fk_menurol_menu')
                 ->references('id')
-                ->on('posts')
+                ->on('menu')
                 ->onDelete('cascade')
                 ->onUpdate('restrict');
-            $table->unsignedBigInteger('categorias_id');
-            $table->foreign('categorias_id', 'fk_postcategoria_categoria')
+            $table->unsignedBigInteger('rol_id');
+            $table->foreign('rol_id', 'fk_menurol_rol')
                 ->references('id')
-                ->on('categorias')
-                ->onDelete('restrict')
+                ->on('rol')
+                ->onDelete('cascade')
                 ->onUpdate('restrict');
         });
     }
@@ -36,6 +36,6 @@ class CrearTablaPostsCategorias extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts_categorias');
+        Schema::dropIfExists('menu_rol');
     }
 }

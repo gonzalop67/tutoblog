@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearTablaMenusRoles extends Migration
+class CrearTablaPostTag extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,18 @@ class CrearTablaMenusRoles extends Migration
      */
     public function up()
     {
-        Schema::create('menus_roles', function (Blueprint $table) {
-            $table->unsignedBigInteger('menus_id');
-            $table->foreign('menus_id', 'fk_menurol_menu')
+        Schema::create('post_tag', function (Blueprint $table) {
+            $table->unsignedBigInteger('post_id');
+            $table->foreign('post_id', 'fk_posttag_post')
                 ->references('id')
-                ->on('menus')
+                ->on('post')
                 ->onDelete('cascade')
                 ->onUpdate('restrict');
-            $table->unsignedBigInteger('roles_id');
-            $table->foreign('roles_id', 'fk_menurol_rol')
+            $table->unsignedBigInteger('tag_id');
+            $table->foreign('tag_id', 'fk_posttag_tag')
                 ->references('id')
-                ->on('roles')
-                ->onDelete('cascade')
+                ->on('tag')
+                ->onDelete('restrict')
                 ->onUpdate('restrict');
         });
     }
@@ -36,6 +36,6 @@ class CrearTablaMenusRoles extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menus_roles');
+        Schema::dropIfExists('post_tag');
     }
 }
