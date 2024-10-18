@@ -1,0 +1,7 @@
+composer require laravel/fortify
+php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"
+
+Revisar el video localizado en el siguiente link:
+
+https://www.youtube.com/watch?v=ZkLKZwkK0vY&list=PLZhE4t9ih5N2AWCOoFt3gHKVHNs2RBTUp&index=8
+

@@ -1,0 +1,6 @@
+php artisan make:middleware VerificarUsuarioSuperAdministrador
+
+Revisar el video ubicado en el siguiente link:
+
+https://www.youtube.com/watch?v=ZrigV-o9acI&list=PLZhE4t9ih5N2AWCOoFt3gHKVHNs2RBTUp&index=10
+

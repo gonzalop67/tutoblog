@@ -1,0 +1,12 @@
+php artisan make:migration crear_tabla_roles --create=roles
+php artisan make:migration crear_tabla_permisos --create=permisos
+php artisan make:migration crear_tabla_permisos_roles --create=permisos_roles
+php artisan make:migration crear_tabla_menus --create=menus
+php artisan make:migration crear_tabla_menus_roles --create=menus_roles
+php artisan make:migration crear_tabla_posts --create=posts
+php artisan make:migration crear_tabla_categorias --create=categorias
+php artisan make:migration crear_tabla_tags --create=tags
+php artisan make:migration crear_tabla_posts_categorias --create=posts_categorias
+php artisan make:migration crear_tabla_posts_tags --create=posts_tags
+php artisan make:migration crear_tabla_comentarios --create=comentarios
+php artisan make:migration crear_tabla_archivos --create=archivos

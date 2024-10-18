@@ -1,0 +1,3 @@
+php artisan make:model Rol -r
+php artisan make:model Usuario -r
+php artisan make:model UsuarioRol
