@@ -41,6 +41,7 @@ class MenuController extends Controller
     {
         $validado = $request->validated();
         Menu::create($validado);
+        cache()->tags('Menu')->flush(); // Clear cache after creating a new menu
         return redirect()->route('menu.crear')->with('mensaje', 'Menu guardado correctamente');
     }
 
@@ -66,6 +67,7 @@ class MenuController extends Controller
     public function actualizar(ValidacionMenu $request, $id)
     {
         Menu::findOrFail($id)->update($request->validated());
+        cache()->tags('Menu')->flush(); // Clear cache after creating a new menu
         return redirect()->route('menu')->with('mensaje', 'Menú actualizado con éxito');
     }
 
@@ -78,6 +80,7 @@ class MenuController extends Controller
     public function eliminar($id)
     {
         Menu::destroy($id);
+        cache()->tags('Menu')->flush(); // Clear cache after creating a new menu
         return redirect()->route('menu')->with('mensaje', 'Menú eliminado con éxito');
     }
 
@@ -85,6 +88,7 @@ class MenuController extends Controller
     {
         if ($request->ajax()) {
             Menu::guardarOrden($request->menu);
+            cache()->tags('Menu')->flush(); // Clear cache after creating a new menu
             return response()->json(['respuesta' => 'ok']);
         } else {
             abort(404);
