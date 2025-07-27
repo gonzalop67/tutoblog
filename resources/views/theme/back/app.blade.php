@@ -16,6 +16,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/back/images/favicon.png') }}" />
     <!-- Custom CSS -->
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/back/libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}">
     <link href="{{ asset('assets/back/css/style.min.css') }}" rel="stylesheet" />
     <!-- CSS DINAMICO -->
     @yield('styles')
@@ -66,6 +67,27 @@
             <!-- ============================================================== -->
             <div class="container-fluid">
                 @yield('contenido')
+                <!-- Modal -->
+                <div class="modal fade" id="confirmar-eliminar" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirme esta acción</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                ¿ Seguro desea eliminar este registro ?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
+                                <button type="button" id="accion-eliminar" class="btn btn-danger">Sí</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
@@ -100,10 +122,11 @@
     <!--Plugins -->
     <script src="{{ asset('assets/back/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('assets/back/libs/jquery-validation/dist/localization/messages_es.js') }}"></script>
+    <script src="{{ asset('assets/back/extra-libs/DataTables/datatables.min.js') }}"></script>
     <!--Plugins de paginas especificas -->
-    @yield("scriptsPlugins")
+    @yield('scriptsPlugins')
     <!--Scripts de paginas especificas -->
-    @yield("scripts")
+    @yield('scripts')
     <!--Custom JavaScript -->
     <script src="{{ asset('assets/back/js/custom.min.js') }}"></script>
     <script src="{{ asset('assets/back/js/tutoblog.js') }}"></script>
