@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\MenuRolController;
 use App\Http\Controllers\Backend\PermisoController;
+use App\Http\Controllers\Backend\PermisoRolController;
+use App\Http\Controllers\Backend\RolController;
 use App\Http\Controllers\MiCuentaController;
 
 /*
@@ -38,6 +40,14 @@ Route::group(['prefix' => 'admin-backend', 'middleware' => ['auth', 'superadmini
     Route::get('menu-rol', [MenuRolController::class, 'index'])->name('menu-rol');
     Route::post('menu-rol', [MenuRolController::class, 'guardar'])->name('menu-rol.guardar');
 
+    /* Rutas de Roles */
+    Route::get('rol', [RolController::class, 'index'])->name('rol');
+    Route::get('rol/crear', [RolController::class, 'crear'])->name('rol.crear');
+    Route::get('rol/{rol}/editar', [RolController::class, 'editar'])->name('rol.editar');
+    Route::post('rol', [RolController::class, 'guardar'])->name('rol.guardar');
+    Route::put('rol/{rol}', [RolController::class, 'actualizar'])->name('rol.actualizar');
+    Route::delete('rol/{rol}/eliminar', [RolController::class, 'eliminar'])->name('rol.eliminar');
+
     /* RUTAS DE PERMISO */
     Route::get('permiso', [PermisoController::class, 'index'])->name('permiso');
     Route::get('permiso/crear', [PermisoController::class, 'crear'])->name('permiso.crear');
@@ -45,4 +55,7 @@ Route::group(['prefix' => 'admin-backend', 'middleware' => ['auth', 'superadmini
     Route::post('permiso', [PermisoController::class, 'guardar'])->name('permiso.guardar');
     Route::put('permiso/{id}', [PermisoController::class, 'actualizar'])->name('permiso.actualizar');
     Route::delete('permiso/{id}', [PermisoController::class, 'eliminar'])->name('permiso.eliminar');
+    /* RUTAS DEL PERMISO ROL */
+    Route::get('permiso-rol', [PermisoRolController::class, 'index'])->name('permiso-rol');
+    Route::post('permiso-rol', [PermisoRolController::class, 'guardar'])->name('permiso-rol.guardar');
 });

@@ -12,7 +12,7 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('assets/back/js/pages/scripts/menu/index.js') }}"></script>
+    <script src="{{ asset('assets/back/js/scripts/menu/index.js') }}"></script>
 @endsection
 
 @section('contenido')

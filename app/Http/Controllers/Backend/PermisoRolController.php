@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Backend\Menu;
+use App\Models\Backend\Permiso;
 use App\Models\Backend\Rol;
 use Illuminate\Http\Request;
 
-class MenuRolController extends Controller
+class PermisoRolController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +16,10 @@ class MenuRolController extends Controller
      */
     public function index()
     {
-        $roles = Rol::orderBy('id')->get();
-        $menus = Menu::getMenu();
-        $menusRols = Menu::with('roles')->get()->pluck('roles', 'id')->toArray();
-        return view('theme.back.menu-rol.index', compact('roles', 'menus', 'menusRols'));
+        $roles = Rol::orderBy('id')->pluck('nombre', 'id');
+        $permisos = Permiso::with('roles')->orderBy('id')->get();
+        $permisosRols = Permiso::with('roles')->get()->pluck('roles', 'id')->toArray();
+        return view('theme.back.permiso-rol.index', compact('roles', 'permisos', 'permisosRols'));
     }
 
     /**
@@ -31,13 +31,13 @@ class MenuRolController extends Controller
     public function guardar(Request $request)
     {
         if ($request->ajax()) {
-            $menu = Menu::findOrFail($request->menu_id);
-            cache()->tags('Menu')->flush(); // Clear cache after creating a new menu
+            $permiso = Permiso::findOrFail($request->permiso_id);
+            cache()->tags('Permiso')->flush();
             if ($request->estado == 1) {
-                $menu->roles()->attach($request->rol_id);
+                $permiso->roles()->attach($request->rol_id);
                 return response()->json(['respuesta' => 'El rol se asignó correctamente.']);
             } else {
-                $menu->roles()->detach($request->rol_id);
+                $permiso->roles()->detach($request->rol_id);
                 return response()->json(['respuesta' => 'El rol se eliminó correctamente.']);
             }
         } else {

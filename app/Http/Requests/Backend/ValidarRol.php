@@ -4,7 +4,7 @@ namespace App\Http\Requests\Backend;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ValidacionPermiso extends FormRequest
+class ValidarRol extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class ValidacionPermiso extends FormRequest
      */
     public function authorize()
     {
-        return isSuperAdmin();
+        return true;
     }
 
     /**
@@ -24,8 +24,8 @@ class ValidacionPermiso extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|max:50|unique:permiso,nombre,' . $this->route('id'),
-            'slug' => 'required|max:50|unique:permiso,slug,' . $this->route('id'),
+            'nombre' => 'required|max:50|unique:rol,nombre,' . optional($this->route('rol'))->id,
+            'slug' => 'required|max:50|unique:rol,slug,' . optional($this->route('rol'))->id,
         ];
     }
 }

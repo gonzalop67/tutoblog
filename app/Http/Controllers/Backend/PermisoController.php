@@ -39,7 +39,7 @@ class PermisoController extends Controller
     public function guardar(ValidacionPermiso $request)
     {
         Permiso::create($request->validated());
-        cache()->tags('Permiso')->flush(); // Clear cache after creating a new menu
+        cache()->tags('Permiso')->flush();
         return redirect()->route('permiso')->with('mensaje', 'Permiso guardado correctamente');
     }
 

@@ -1,23 +1,26 @@
 @extends('theme.back.app')
 @section('titulo')
-    Sistema Menús
+    Sistema Roles
 @endsection
 
 @section('contenido')
     <div class="row">
         <div class="col-md-12">
+            @if ($mensaje = session('mensaje'))
+                <x-alert tipo="success" :mensaje="$mensaje" />
+            @endif
             @if ($errors->any())
                 <x-alert tipo="danger" :mensaje="$errors" />
             @endif
             <div class="card">
                 <div class="card-header bg-success">
-                    <h5 class="text-white float-left">Editar Menu {{$data->nombre}}</h5>
-                    <a href="{{route('menu')}}" class="btn btn-outline-light btn-sm float-right">Volver al listado</a>
+                    <h5 class="text-white float-left">Crear Roles</h5>
+                    <a href="{{route('rol')}}" class="btn btn-outline-light btn-sm float-right">Volver al listado</a>
                 </div>
-                <form action="{{ route('menu.actualizar', $data->id) }}" id="form-general" class="form-horizontal" method="post">
-                    @csrf @method('put')
+                <form action="{{ route('rol.guardar') }}" id="form-general" class="form-horizontal" method="post">
+                    @csrf
                     <div class="card-body">
-                        @include('theme.back.menu.form')
+                        @include('theme.back.rol.form')
                     </div>
                     <div class="border-top">
                         <div class="card-body">
@@ -36,5 +39,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('assets/back/js/scripts/menu/crear.js') }}"></script>
+    <script src="{{ asset('assets/back/js/scripts/crear.js') }}"></script>
 @endsection

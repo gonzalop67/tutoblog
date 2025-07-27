@@ -39,5 +39,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('assets/back/js/pages/scripts/menu/crear.js') }}"></script>
+    <script src="{{ asset('assets/back/js/scripts/menu/crear.js') }}"></script>
 @endsection
