@@ -17,6 +17,8 @@
     <!-- Custom CSS -->
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('assets/back/libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/back/libs/toastr/build/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/back/extra-libs/sweetalert2/sweetalert2.min.css') }}">
     <link href="{{ asset('assets/back/css/style.min.css') }}" rel="stylesheet" />
     <!-- CSS DINAMICO -->
     @yield('styles')
@@ -123,6 +125,8 @@
     <script src="{{ asset('assets/back/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('assets/back/libs/jquery-validation/dist/localization/messages_es.js') }}"></script>
     <script src="{{ asset('assets/back/extra-libs/DataTables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/back/libs/toastr/build/toastr.min.js') }}"></script>
+    <script src="{{ asset('assets/back/extra-libs/sweetalert2/sweetalert2.min.js') }}"></script>
     <!--Plugins de paginas especificas -->
     @yield('scriptsPlugins')
     <!--Scripts de paginas especificas -->

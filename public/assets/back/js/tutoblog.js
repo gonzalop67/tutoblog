@@ -28,12 +28,30 @@ var APP = function () {
                     }
                 },
                 invalidHandler: function (event, validator) { // display error alert on form submit
-                
+
                 },
                 submitHandler: function(form) {
                     return true;
                 }
             });
+        },
+        notificacion: function (mensaje, titulo, tipo) {
+            switch (tipo) {
+                case 'error':
+                    toastr.error(mensaje, titulo);
+                    break;
+                case 'success':
+                    toastr.success(mensaje, titulo);
+                    break;
+                case 'info':
+                    toastr.info(mensaje, titulo);
+                    break;
+                case 'warning':
+                    toastr.warning(mensaje, titulo);
+                    break;
+                default:
+                    break;
+            }
         },
     }
 }();
