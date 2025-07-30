@@ -13,7 +13,7 @@ class ValidacionPermiso extends FormRequest
      */
     public function authorize()
     {
-        return isSuperAdmin();
+        return true;
     }
 
     /**

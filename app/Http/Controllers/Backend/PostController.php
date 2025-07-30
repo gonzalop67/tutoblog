@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Backend\ValidarPost;
+use App\Models\Backend\Categoria;
 use App\Models\Backend\Post;
+use App\Models\Backend\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -26,7 +30,9 @@ class PostController extends Controller
      */
     public function crear()
     {
-        //
+        $categorias = Categoria::orderBy('id')->pluck('nombre', 'id');
+        $tags = Tag::orderBy('id')->pluck('nombre', 'id');
+        return view('theme.back.post.crear', compact('categorias', 'tags'));
     }
 
     /**
@@ -35,9 +41,29 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function guardar(Request $request)
+    public function guardar(ValidarPost $request)
     {
-        //
+        // dd($request->validated());
+        $post = Post::create($request->validated());
+        $categorias = $request->categoria;
+        $post->categoria()->attach(array_values($categorias)); // Se relacionan las categorías
+        $tags = $request->tag ? Tag::setTag($request->tag) : [];
+        $post->tag()->attach($tags); // Se relacionan las etiquetas
+        /*
+        * Trabajo con las imágenes
+        */
+        if ($imagen = $request->imagen) {
+            $folder = "imagen_post";
+            $peso = $imagen->getSize();
+            $extension = $imagen->extension();
+            $ruta = Storage::disk('public')->put($folder, $imagen);
+            $post->archivo()->create([
+                'ruta' => $ruta,
+                'peso' => $peso,
+                'extension' => $extension,
+            ]);
+        }
+        return redirect()->route('post')->with('mensaje', 'Post guardado exitosamente.');
     }
 
     /**
@@ -46,9 +72,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function mostrar(Post $post)
+    public function mostrar(Post $post, Request $request)
     {
-        // return view('theme.back.post.mostrar', compact('post'));
+        // dd($request->ajax());
+        if ($request->ajax()) {
+            return view('theme.back.post.mostrar', compact('post'));
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -59,7 +90,9 @@ class PostController extends Controller
      */
     public function editar(Post $post)
     {
-        //
+        $categorias = Categoria::orderBy('id')->pluck('nombre', 'id');
+        $tags = Tag::orderBy('id')->pluck('nombre', 'id');
+        return view('theme.back.post.editar', compact('post', 'categorias', 'tags'));
     }
 
     /**
@@ -69,9 +102,30 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function actualizar(Request $request, Post $post)
+    public function actualizar(ValidarPost $request, Post $post)
     {
-        //
+        $post->update($request->validated());
+        $categorias = $request->categoria;
+        $post->categoria()->sync(array_values($categorias)); // Se relacionan las categorías
+        $tags = $request->tag ? Tag::setTag($request->tag) : [];
+        $post->tag()->sync($tags); // Se relacionan las etiquetas
+        /*
+        * Trabajo con las imágenes
+        */
+        if ($imagen = $request->imagen) {
+            $folder = "imagen_post";
+            Storage::disk('public')->delete($post->archivo->ruta); // Eliminar la imagen anterior
+            $post->archivo()->delete(); // Eliminar el registro del archivo anterior
+            $peso = $imagen->getSize();
+            $extension = $imagen->extension();
+            $ruta = Storage::disk('public')->put($folder, $imagen);
+            $post->archivo()->create([
+                'ruta' => $ruta,
+                'peso' => $peso,
+                'extension' => $extension,
+            ]);
+        }
+        return redirect()->route('post')->with('mensaje', 'Post actualizado exitosamente.');
     }
 
     /**

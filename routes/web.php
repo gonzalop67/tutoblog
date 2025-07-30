@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\PermisoController;
 use App\Http\Controllers\Backend\PermisoRolController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\RolController;
+use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\MiCuentaController;
 
 /*
@@ -71,9 +72,18 @@ Route::group(['prefix' => 'admin-backend', 'middleware' => ['auth', 'superadmini
 
     /* Rutas Post */
     Route::get('post', [PostController::class, 'index'])->name('post');
-    Route::post('post/crear', [PostController::class, 'crear'])->name('post.crear');
-    Route::put('post/{id}/editar', [PostController::class, 'editar'])->name('post.editar');
+    Route::get('post/crear', [PostController::class, 'crear'])->name('post.crear');
+    Route::post('post/{post}/mostrar', [PostController::class, 'mostrar'])->name('post.mostrar');
+    Route::get('post/{post}/editar', [PostController::class, 'editar'])->name('post.editar');
     Route::post('post', [PostController::class, 'guardar'])->name('post.guardar');
-    Route::put('post/{id}', [PostController::class, 'actualizar'])->name('post.actualizar');
-    Route::delete('post/{id}', [PostController::class, 'eliminar'])->name('post.eliminar');
+    Route::put('post/{post}', [PostController::class, 'actualizar'])->name('post.actualizar');
+    Route::delete('post/{post}', [PostController::class, 'eliminar'])->name('post.eliminar');
+
+    /* Rutas Tag */
+    Route::get('tag', [TagController::class, 'index'])->name('tag');
+    Route::get('tag/crear', [TagController::class, 'crear'])->name('tag.crear');
+    Route::get('tag/{id}/editar', [TagController::class, 'editar'])->name('tag.editar');
+    Route::post('tag', [TagController::class, 'guardar'])->name('tag.guardar');
+    Route::put('tag/{id}', [TagController::class, 'actualizar'])->name('tag.actualizar');
+    Route::delete('tag/{id}', [TagController::class, 'eliminar'])->name('tag.eliminar');
 });

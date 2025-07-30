@@ -13,7 +13,7 @@ class ValidacionMenu extends FormRequest
      */
     public function authorize()
     {
-        return isSuperAdmin();
+        return true;
     }
 
     /**

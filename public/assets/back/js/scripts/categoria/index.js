@@ -1,5 +1,6 @@
 $(document).ready(function () {
     var tabla = $("#data-table").DataTable();
+
     // Proceso nuevo Registro
     $("#nuevo-registro").on('click', function (e) {
         e.preventDefault();

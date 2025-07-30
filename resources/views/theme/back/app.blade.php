@@ -19,9 +19,9 @@
     <link rel="stylesheet" href="{{ asset('assets/back/libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/back/libs/toastr/build/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/back/extra-libs/sweetalert2/sweetalert2.min.css') }}">
+    @yield('styles')
     <link href="{{ asset('assets/back/css/style.min.css') }}" rel="stylesheet" />
     <!-- CSS DINAMICO -->
-    @yield('styles')
     <link href="{{ asset('assets/back/css/tutoblog.css') }}" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
